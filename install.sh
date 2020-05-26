@@ -139,7 +139,11 @@ function newClient () {
 
 function newClientGUI () {
 	
-	
+	echo ""
+	read -rp "Do you really want to install SPYSEC? [y/n]: " -e -i n INSTALL
+	if [[ "$INSTALL" = 'y' ]]; then
+
+
 		
 	
 	#echo ""
@@ -251,7 +255,11 @@ function newClientGUI () {
 
 		echo "Install Spysec!"
 
-		
+	else
+		echo ""
+		echo "Install aborted!"
+	fi
+	
 		 
 }
 
@@ -259,7 +267,7 @@ function newClientGUI () {
 
 function removeOpenVPN () {
 	echo ""
-	read -rp "Do you really want to remove OpenVPN? [y/n]: " -e -i n REMOVE
+	read -rp "Do you really want to remove SPYSEC? [y/n]: " -e -i n REMOVE
 	if [[ "$REMOVE" = 'y' ]]; then
 		# Get OpenVPN port from the configuration
 		PORT=$(grep '^port ' /etc/spysec/server.sh | cut -d " " -f 2)
@@ -291,6 +299,8 @@ function removeOpenVPN () {
 		echo "Removal aborted!"
 	fi
 }
+
+
 
 
 	

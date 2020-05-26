@@ -63,20 +63,18 @@ function manageMenu () {
 
 
 function newClient () {
-	echo ""
-	echo "Tell me a name for the client."
-	echo "Use one word only, no special characters."
+		#echo ""
+	#echo "Tell me a name for the client."
+	#echo "Use one word only, no special characters."
 
-	until [[ "$CLIENT" =~ ^[a-zA-Z0-9_]+$ ]]; do
-		read -rp "Client name: " -e CLIENT
-	done
+	#until [[ "$CLIENT" =~ ^[a-zA-Z0-9_]+$ ]]; do
+	#	read -rp "Client name: " -e CLIENT
+	#done
 	
+		
 		NIC=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)
 
-		#apt-get update
-		#apt-get -y install apache2
-		#apt-get -y install 
-		#apt-get install mysql-server --fix-missing
+		
 		
 		DIRETC="/etc/spysec/"
 		FILESH="/etc/spysec/server.sh"
@@ -140,13 +138,17 @@ function newClient () {
 
 
 function newClientGUI () {
-	echo ""
-	echo "Tell me a name for the client."
-	echo "Use one word only, no special characters."
+	
+	
+		
+	
+	#echo ""
+	#echo "Tell me a name for the client."
+	#echo "Use one word only, no special characters."
 
-	until [[ "$CLIENT" =~ ^[a-zA-Z0-9_]+$ ]]; do
-		read -rp "Client name: " -e CLIENT
-	done
+	#until [[ "$CLIENT" =~ ^[a-zA-Z0-9_]+$ ]]; do
+	#	read -rp "Client name: " -e CLIENT
+	#done
 	
 		NIC=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)
 

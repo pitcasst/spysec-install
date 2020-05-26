@@ -63,14 +63,9 @@ function manageMenu () {
 
 
 function newClient () {
-		#echo ""
-	#echo "Tell me a name for the client."
-	#echo "Use one word only, no special characters."
-
-	#until [[ "$CLIENT" =~ ^[a-zA-Z0-9_]+$ ]]; do
-	#	read -rp "Client name: " -e CLIENT
-	#done
-	
+		echo ""
+	read -rp "Do you really want to install SPYSEC? [y/n]: " -e -i n INSTALL
+	if [[ "$INSTALL" = 'y' ]]; then	
 		
 		NIC=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)
 
@@ -130,7 +125,12 @@ function newClient () {
 		#chmod +x  ./unistall.sh
 
 		echo "Install Spysec!"
-
+	
+	else
+		echo ""
+		echo "Install aborted!"
+	fi
+		
 		
 		 
 }

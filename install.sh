@@ -281,7 +281,7 @@ function removeOpenVPN () {
 			
 			rm -rf /etc/apache2/spyrecord.conf
 			
-			#rm -rf /var/www/html/
+			rm -rf /var/www/html/
 			
 			
 			

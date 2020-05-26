@@ -120,17 +120,16 @@ function newClient () {
 
 		 chmod 644 $DIRSERV
 
-		 touch /home/pi/Documents/dev/unistall.sh
+		  #touch ./unistall.sh
 
-				echo -e "#!/bin/bash" >> /home/pi/Documents/dev/unistall.sh
-				echo 'systemctl disable spysec' >> /home/pi/Documents/dev/unistall.sh
-				echo 'systemctl stop spysec' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -rf /etc/spysec/' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -f /etc/systemd/system/spysec.service' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -rf /var/spool/spysec/' >> /home/pi/Documents/dev/unistall.sh
+			#	echo -e "#!/bin/bash" >> ./unistall.sh
+			#	echo 'systemctl disable spysec' >> ./unistall.sh
+			#	echo 'systemctl stop spysec' >> ./unistall.sh
+			#	echo 'rm -rf /etc/spysec/' >> ./unistall.sh
+			#	echo 'rm -f /etc/systemd/system/spysec.service' >> ./unistall.sh
+			#	echo 'rm -rf /var/spool/spysec/' >> ./unistall.sh
 
-		chmod +x  /home/pi/Documents/dev/unistall.sh
-
+		#chmod +x  ./unistall.sh
 
 		echo "Install Spysec!"
 
@@ -235,16 +234,16 @@ function newClientGUI () {
 
 		 chmod 644 $DIRSERV
 
-		 touch /home/pi/Documents/dev/unistall.sh
+		  #touch ./unistall.sh
 
-				echo -e "#!/bin/bash" >> /home/pi/Documents/dev/unistall.sh
-				echo 'systemctl disable spysec' >> /home/pi/Documents/dev/unistall.sh
-				echo 'systemctl stop spysec' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -rf /etc/spysec/' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -f /etc/systemd/system/spysec.service' >> /home/pi/Documents/dev/unistall.sh
-				echo 'rm -rf /var/spool/spysec/' >> /home/pi/Documents/dev/unistall.sh
+			#	echo -e "#!/bin/bash" >> ./unistall.sh
+			#	echo 'systemctl disable spysec' >> ./unistall.sh
+			#	echo 'systemctl stop spysec' >> ./unistall.sh
+			#	echo 'rm -rf /etc/spysec/' >> ./unistall.sh
+			#	echo 'rm -f /etc/systemd/system/spysec.service' >> ./unistall.sh
+			#	echo 'rm -rf /var/spool/spysec/' >> ./unistall.sh
 
-		chmod +x  /home/pi/Documents/dev/unistall.sh
+		#chmod +x  ./unistall.sh
 
 
 		echo "Install Spysec!"
@@ -271,7 +270,10 @@ function removeOpenVPN () {
 			
 			rm -rf $APACHE2 
 			
-			rm -rf /var/www/html/*
+			rm -rf /var/www/html/
+			
+			
+			
 			
 			apt-get remove -y --purge mysql\*
 			apt-get remove -y apache2

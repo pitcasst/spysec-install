@@ -150,9 +150,10 @@ function newClientGUI () {
 	
 		NIC=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)
 
-		#apt-get update
+		apt-get update
 		apt-get -y install apache2
 		apt-get -y install mariadb-server
+		apt-get -y install php php-mysql
 		
 		systemctl start mysql
 		systemctl enable mysql
@@ -268,7 +269,7 @@ function removeOpenVPN () {
 			rm -f /etc/systemd/system/spysec.service
 			rm -rf /var/spool/spysec/
 			
-			rm -rf $APACHE2 
+			rm -rf /etc/apache2/spyrecord.conf
 			
 			#rm -rf /var/www/html/
 			
@@ -277,6 +278,7 @@ function removeOpenVPN () {
 			
 			apt-get remove -y --purge mysql\*
 			apt-get remove -y apache2
+			apt-get -y remove php php-mysql
 			apt-get clean
 			
 

@@ -184,7 +184,7 @@ function newClientGUI () {
 		
 		
 		
-		<IfModule alias_module>
+		echo -e '<IfModule alias_module>' >> $APACHE2
 		
 		
 		echo -e 'Alias /icons/ "/usr/share/apache2/icons/"' >> $APACHE2

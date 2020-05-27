@@ -178,23 +178,35 @@ function newClientGUI () {
 	     mysql -u root spysec < spysecdb.sql
 		
 		
-		
-		APACHE2="/etc/apache2/spyrecord.conf"
+		mv  /etc/apache2/mods-enabled/alias.conf  /etc/apache2/mods-enabled/alias.conf.old
+		APACHE2="/etc/apache2/mods-enabled/alias.conf"
 		touch $APACHE2
-		echo -e 'Alias /RECORDINGS/ "/var/spool/spysec/"' >> $APACHE2
-		echo -e "<Directory "/var/spool/spysec/">" >> $APACHE2
-		echo -e "Options Indexes MultiViews" >> $APACHE2
-		echo -e "AllowOverride None" >> $APACHE2
-		echo -e "Require all granted" >> $APACHE2
-		echo -e "<files *.wav>" >> $APACHE2
-		echo -e " Forcetype application/forcedownload" >> $APACHE2
-		echo -e "</files>" >> $APACHE2
-		echo -e "php_admin_value engine Off" >> $APACHE2
-		echo -e "</Directory>" >> $APACHE2
-		echo -e "" >> $APACHE2
-        
-        
+		
+		
+		
+		<IfModule alias_module>
+		
+		
+		echo -e 'Alias /icons/ "/usr/share/apache2/icons/"' >> $APACHE2
 
+        echo -e '<Directory "/usr/share/apache2/icons">' >> $APACHE2
+                echo -e "Options FollowSymlinks" >> $APACHE2
+                echo -e "AllowOverride None" >> $APACHE2
+                echo -e "Require all granted" >> $APACHE2
+        echo -e "</Directory>" >> $APACHE2
+
+        echo -e 'Alias /RECORDINGS/ "/var/spool/spysec/"' >> $APACHE2
+
+        echo -e '<Directory "/var/spool/spysec/">' >> $APACHE2
+        		echo -e "#Options Indexes MultiViews" >> $APACHE2
+                echo -e "#AllowOverride None" >> $APACHE2
+				echo -e "#php_admin_value engine Off" >> $APACHE2
+				echo -e "AllowOverride All" >> $APACHE2
+				echo -e "Require all granted" >> $APACHE2
+        echo -e "</Directory>" >> $APACHE2
+		echo -e " </IfModule>" >> $APACHE2
+
+		
 		tar -xf spysec-V1.tar.gz --directory /var/www/html/
 		
 		

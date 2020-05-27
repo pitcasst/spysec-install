@@ -1,13 +1,13 @@
--- MySQL dump 10.14  Distrib 5.5.64-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.17  Distrib 10.3.22-MariaDB, for debian-linux-gnueabihf (armv8l)
 --
 -- Host: localhost    Database: spysec
 -- ------------------------------------------------------
--- Server version	5.5.64-MariaDB
+-- Server version	10.3.22-MariaDB-0+deb10u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -26,10 +26,10 @@ CREATE TABLE `audios` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
   `audio` varchar(255) NOT NULL DEFAULT '.wav',
-  `duracion` text,
+  `duracion` text DEFAULT NULL,
   `archivo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `audios` (
 
 LOCK TABLES `audios` WRITE;
 /*!40000 ALTER TABLE `audios` DISABLE KEYS */;
+INSERT INTO `audios` VALUES (1,'2020-05-03 07:00:00','MASARI_20200503-070000.wav',NULL,'MASARI_20200503-070000');
 /*!40000 ALTER TABLE `audios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +59,7 @@ CREATE TABLE `logSpysec` (
   `ipHost` varchar(255) DEFAULT NULL,
   `osHost` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +68,6 @@ CREATE TABLE `logSpysec` (
 
 LOCK TABLES `logSpysec` WRITE;
 /*!40000 ALTER TABLE `logSpysec` DISABLE KEYS */;
-INSERT INTO `logSpysec` VALUES (1,0,'2020-05-11 14:58:48','admin','inicia sesion','','10.80.0.1',''),(2,0,'2020-05-11 14:58:52','admin','cierra sesion','','10.80.0.1','');
 /*!40000 ALTER TABLE `logSpysec` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,13 +84,13 @@ CREATE TABLE `planificacion` (
   `hora_inicio` varchar(255) NOT NULL DEFAULT '00:00:00',
   `hora_fin` varchar(255) NOT NULL DEFAULT '00:00:00',
   `dia_semana_0` varchar(11) DEFAULT '',
+  `dia_semana_1` varchar(11) DEFAULT '',
   `dia_semana_2` varchar(11) DEFAULT '',
-  `dia__semana_3` varchar(11) DEFAULT '',
+  `dia_semana_3` varchar(11) DEFAULT NULL,
   `dia_semana_4` varchar(11) DEFAULT NULL,
   `dia_semana_5` varchar(11) DEFAULT NULL,
   `dia_semana_6` varchar(11) DEFAULT NULL,
-  `dia_semana_7` varchar(11) DEFAULT NULL,
-  `estado` int(11) NOT NULL DEFAULT '0',
+  `estado` int(11) NOT NULL DEFAULT 0,
   `dias_semana` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,17 +121,17 @@ CREATE TABLE `usuarios` (
   `puesto` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `img` varchar(255) NOT NULL DEFAULT 'FullSizeRender.png',
-  `status` int(1) NOT NULL DEFAULT '0',
-  `perfil` int(1) NOT NULL DEFAULT '2',
+  `status` int(1) NOT NULL DEFAULT 0,
+  `perfil` int(1) NOT NULL DEFAULT 2,
   `tema` varchar(255) NOT NULL DEFAULT 'skin-blue',
-  `activo` int(1) NOT NULL DEFAULT '1',
+  `activo` int(1) NOT NULL DEFAULT 1,
   `navbar` int(1) DEFAULT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `fecha_session` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `bloqueado` int(1) NOT NULL DEFAULT '0',
+  `bloqueado` int(1) NOT NULL DEFAULT 0,
   `grupo` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','2dd9236f0ce33fd51d5b9f1e6c0ebf1b','Administrador',NULL,NULL,NULL,'FullSizeRender.png',0,1,'skin-blue',1,NULL,'0000-00-00 00:00:00','2020-05-11 14:58:48',0,'Administrador');
+INSERT INTO `usuarios` VALUES (1,'admin','2dd9236f0ce33fd51d5b9f1e6c0ebf1b','Administrador',NULL,NULL,NULL,'FullSizeRender.png',1,1,'skin-blue',1,NULL,'0000-00-00 00:00:00','2020-05-11 14:58:48',0,'Administrador'),(2,'jrangel','a83293e08249f08bbd7daf50e13eb166','Juan','Rangel','Soporte','jrangel@conessis.com.mx','FullSizeRender.png',0,3,'skin-blue',1,NULL,'2020-05-26 21:05:57','0000-00-00 00:00:00',0,'');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -153,4 +153,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-11 15:01:53
+-- Dump completed on 2020-05-27 12:03:00
